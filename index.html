@@ -7,16 +7,67 @@
     <title>Down To Ground</title>
     <link rel="stylesheet" href="style.css">
 </head>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const navContainer = document.querySelector('.nav-container');
+
+    if (navContainer) {
+      let menuBox = document.querySelector('.nav-menu-box');
+      if (!menuBox) {
+        menuBox = document.createElement('div');
+        menuBox.className = 'nav-menu-box';
+        menuBox.innerHTML = navContainer.innerHTML;
+        navContainer.parentElement.appendChild(menuBox);
+      }
+
+      // Icon click handler
+      navContainer.addEventListener('click', function(e) {
+        // Clear check: Sirf mobile screen (<= 389px) par hi menu toggle hoga
+        if (window.innerWidth <= 389) {
+          e.stopPropagation();
+          menuBox.classList.toggle('open');
+        }
+      });
+
+      // Outside click handler to close mobile menu
+      document.addEventListener('click', function(e) {
+        if (window.innerWidth <= 389) {
+          if (!menuBox.contains(e.target) && !navContainer.contains(e.target)) {
+            menuBox.classList.remove('open');
+          }
+        }
+      });
+
+      // Window resize hone par agar screen bari ho jaye to open state clear kar de
+      window.addEventListener('resize', function() {
+        if (window.innerWidth > 389) {
+          menuBox.classList.remove('open');
+        }
+      });
+    }
+  });
+</script>
 
 <body>
     <div class="announcement-bar">
         <div class="marquee-track">
-            <span>Holiday Sale!</span>
-            <span>FREE SHIPPING</span>
-            <span>Holiday Sale!</span>
-            <span>FREE SHIPPING</span>
-            <span>Holiday Sale!</span>
-            <span>FREE SHIPPING</span>
+            <div class="marquee-content">
+                <span>Holiday Sale!</span>
+                <span>FREE SHIPPING</span>
+                <span>Holiday Sale!</span>
+                <span>FREE SHIPPING</span>
+                <span>Holiday Sale!</span>
+                <span>FREE SHIPPING</span>
+            </div>
+            <div class="marquee-content">
+                <span>Holiday Sale!</span>
+                <span>FREE SHIPPING</span>
+                <span>Holiday Sale!</span>
+                <span>FREE SHIPPING</span>
+                <span>Holiday Sale!</span>
+                <span>FREE SHIPPING</span>
+            </div>
+
         </div>
     </div>
 
@@ -60,7 +111,7 @@
                     <button class="arrow-btn" type="button">
                         <img src="images/left-arrow.svg" alt="previous">
                     </button>
-                    <img src="images/image-1.svg" alt="Thumb 1" class="thumb active">
+                    <img src="images/image-1.svg" alt="Thumb 1" class="thumb">
                     <img src="images/image-2.svg" alt="Thumb 2" class="thumb">
                     <img src="images/image-3.svg" alt="Thumb 3" class="thumb">
                     <img src="images/image-4.svg" alt="Thumb 4" class="thumb">
@@ -166,7 +217,7 @@
 
         <section class="product-tabs-section">
             <div class="tabs-header">
-                <button class="tab-item active">Key Features</button>
+                <button class="tab-item active">Key Features<span class="tab-line"></span></button>
                 <button class="tab-item">Sizing & Product Info</button>
                 <button class="tab-item">Care Information</button>
             </div>
@@ -176,7 +227,6 @@
             </h2>
 
             <div class="features-grid">
-                <!-- Card 1 -->
                 <div class="feature-card">
                     <div class="icon-wrapper">
                         <img src="images/Plugin.svg" alt="Recharge Overnight" class="feature-icon" />
@@ -229,8 +279,8 @@
                 <h2 class="story-heading">Nancy's Grounding Story</h2>
 
                 <div class="story-text">
-                    <p>For years, Nancy couldn't sleep. Her mind wouldn't shut off, her body ached, and nothing-not even
-                        melatonin-helped.</p>
+                    <p>For years, Nancy couldn't sleep. Her mind wouldn't shut off, her body ached, and nothing—not even
+                        melatonin—helped.</p>
 
                     <p>Then she tried the Down To Ground Mattress Cover. That very first night, she slept deeply, woke
                         up pain-free, and felt unstoppable.</p>
@@ -248,11 +298,11 @@
                 <h2 class="grounding-title">What is Grounding?</h2>
                 <div class="grounding-text">
                     <p>Imagine plugging your body into the Earth's natural energy, like charging your phone.
-                        Grounding-or "earthing"-is the practice of physically connecting with the Earth by walking
+                        Grounding—or "earthing"—is the practice of physically connecting with the Earth by walking
                         barefoot on grass, soil, or sand.</p>
                     <p>But why? The Earth's surface is packed with free-flowing electrons that have been proven to
                         reduce stress, ease pain, and recharge your energy. It's like nature's way of resetting your
-                        system-helping you sleep better, feel calmer, and recover faster.</p>
+                        system—helping you sleep better, feel calmer, and recover faster.</p>
                     <p>Most of us are insulated from this powerful energy by modern lifestyles, but grounding lets you
                         tap back into it, rebalancing your body and mind, often resulting in life changing benefits.</p>
                 </div>
@@ -277,7 +327,7 @@
                     <p>What if your bed could do more than just help you sleep?</p>
 
                     <p>The Down To Ground Mattress Cover connects you directly to the Earth's natural energy through a
-                        grounding cable, delivering the soothing, rejuvenating benefits of grounding-all while you rest.
+                        grounding cable, delivering the soothing, rejuvenating benefits of grounding—all while you rest.
                     </p>
 
                     <p>This powerful connection helps neutralize harmful "dirty electricity" that disrupts your body's
@@ -292,13 +342,13 @@
 
         <section class="benefits-banner-section">
             <div class="benefits-text-box">
-                <p>Prevents bone density loss</p>
+                <p class="highlight-text-top">Prevents bone density loss</p>
                 <p>Increases metabolism</p>
                 <p>Improves immune system</p>
                 <p>Normalizes muscle tension</p>
                 <p>Reduces PMS symptoms</p>
                 <p>Anti-aging effects</p>
-                <p>Reduces anxiety and stress</p>
+                <p class="highlight-text-bottom">Reduces anxiety and stress</p>
             </div>
 
             <div class="benefits-media-box">
@@ -308,7 +358,7 @@
 
         <section class="testimonials-section">
             <div class="testimonials-header">
-                <img src="images/stars.svg" alt="star" class="card-stars">
+                <img src="images/stars-style.svg" alt="star" class="stars">
                 <p class="rating-text">4.95/5 by 30,569+ customers</p>
                 <h2 class="main-heading">Sleep Transformed, Lives Changed</h2>
             </div>
@@ -316,43 +366,45 @@
             <div class="testimonials-grid">
                 <div class="testimonial-card">
                     <img src="images/Dave.svg" alt="Dave" class="user-avatar">
-                    <h3 class="card-title">My best pick so far</h3>
-                    <p class="card-text">"Waking up pain-free for the first time in years!" "I've struggled with
+                    <h3 class="user-card-title">My best pick so far</h3>
+                    <p class="card-text">"Waking up pain-free for the first time in years!" </br> "I've struggled with
                         arthritis in my knuckles since I was 16, and every morning felt like a battle just to move.
-                        Within a few days of using the Down To Ground Bedsheet, I couldn't believe it-no more stiffness,
+                        Within a few days of using the Down To Ground Bedsheet, I couldn't believe it—no more stiffness,
                         no more groaning as I get out of bed. Even after a long day at work or 36 holes of golf, I feel
                         energized and pain-free. It's better than any medication I've tried!"</p>
                     <div class="card-bottom">
-                        <img src="images/stars.svg" alt="star" class="card-stars">
-                        <p class="author-name">- Dave</p>
+                        <img src="images/stars-style.svg" alt="star" class="card-stars">
+                        <p class="author-name">— Dave</p>
                     </div>
                 </div>
 
                 <div class="testimonial-card">
                     <img src="images/Nia.svg" alt="Nia" class="user-avatar">
-                    <h3 class="card-title">Never this amazed</h3>
-                    <p class="card-text">"It's like the old me is back!" "After years of poor sleep and stiff, aching
+                    <h3 class="user-card-title">Never this amazed</h3>
+                    <p class="card-text">"It's like the old me is back!" </br> "After years of poor sleep and stiff,
+                        aching
                         joints, I'd almost forgotten what feeling good was like. But from the first night on the Down To
                         Ground Bedsheet, everything changed. My ankle pain is gone, my mornings are effortless, and I
-                        wake up feeling completely refreshed. It's been life-changing-I'm ready to tackle the day
+                        wake up feeling completely refreshed. It's been life-changing—I'm ready to tackle the day
                         again!"</p>
                     <div class="card-bottom">
-                        <img src="images/stars.svg" alt="star" class="card-stars">
-                        <p class="author-name">- Nia</p>
+                        <img src="images/stars-style.svg" alt="star" class="card-stars">
+                        <p class="author-name">— Nia</p>
                     </div>
                 </div>
 
                 <div class="testimonial-card">
                     <img src="images/Mary.svg" alt="Mary" class="user-avatar">
-                    <h3 class="card-title">My best pick so far</h3>
-                    <p class="card-text">"A miracle for sleep and pain relief!" "I was a chronic insomniac, waking up
+                    <h3 class="user-card-title">My best pick so far</h3>
+                    <p class="card-text">"A miracle for sleep and pain relief!" </br> "I was a chronic insomniac, waking
+                        up
                         for hours every night pacing the floor. I also had hip arthritis that kept me tossing and
-                        turning. Since using the Down To Ground Bedsheet, it's like a miracle-I fall asleep instantly,
+                        turning. Since using the Down To Ground Bedsheet, it's like a miracle—I fall asleep instantly,
                         stay asleep, and wake up pain-free. It's transformed my life so much that everyone in my family
                         is getting one for Christmas!"</p>
                     <div class="card-bottom">
-                        <img src="images/stars.svg" alt="star" class="card-stars">
-                        <p class="author-name">- Mary</p>
+                        <img src="images/stars-style.svg" alt="star" class="card-stars">
+                        <p class="author-name">— Mary</p>
                     </div>
                 </div>
             </div>
@@ -378,8 +430,9 @@
                     <div class="hiw-image-container">
                         <img src="images/Step-2.svg" alt="Step 2" class="hiw-image">
                     </div>
-                    <h3 class="hiw-step-title">Step 2</h3>
-                    <p class="hiw-step-text">Plug the Mattress Cover into the grounding socket of your electrical outlet
+                    <h3 class="hiw-step-title ">Step 2</h3>
+                    <p class="hiw-step-text text-position">Plug the Mattress Cover into the grounding socket of your
+                        electrical outlet
                     </p>
                 </div>
 
@@ -388,7 +441,8 @@
                         <img src="images/Step-3.svg" alt="Step 3" class="hiw-image">
                     </div>
                     <h3 class="hiw-step-title">Step 3</h3>
-                    <p class="hiw-step-text">Sleep on the Mattress Cover and wake up feeling incredible!</p>
+                    <p class="hiw-step-text text-step-position">Sleep on the Mattress Cover and wake up feeling
+                        incredible!</p>
                 </div>
             </div>
 
@@ -424,7 +478,7 @@
                             <img src="images/star-full.svg" alt="star">
                         </div>
                         <div class="progress-track">
-                            <div class="progress-fill" style="width: 83.3%;"></div>
+                            <div class="progress-fill fill-5"></div>
                         </div>
                         <span class="count-label">165</span>
                     </div>
@@ -438,7 +492,7 @@
                             <img src="images/star-empty.svg" alt="star">
                         </div>
                         <div class="progress-track">
-                            <div class="progress-fill" style="width: 13.1%;"></div>
+                            <div class="progress-fill fill-4"></div>
                         </div>
                         <span class="count-label">26</span>
                     </div>
@@ -452,7 +506,7 @@
                             <img src="images/star-empty.svg" alt="star">
                         </div>
                         <div class="progress-track">
-                            <div class="progress-fill" style="width: 2%;"></div>
+                            <div class="progress-fill fill-3"></div>
                         </div>
                         <span class="count-label">4</span>
                     </div>
@@ -466,7 +520,7 @@
                             <img src="images/star-empty.svg" alt="star">
                         </div>
                         <div class="progress-track">
-                            <div class="progress-fill" style="width: 1%;"></div>
+                            <div class="progress-fill fill-2"></div>
                         </div>
                         <span class="count-label">2</span>
                     </div>
@@ -480,7 +534,7 @@
                             <img src="images/star-empty.svg" alt="star">
                         </div>
                         <div class="progress-track">
-                            <div class="progress-fill" style="width: 0.5%;"></div>
+                            <div class="progress-fill fill-1"></div>
                         </div>
                         <span class="count-label">1</span>
                     </div>
@@ -489,7 +543,7 @@
 
             <div class="reviews-sort-container">
                 <div class="sort-dropdown">
-                    <span class="sort-text">Most Recent</span>
+                    <span class="sort-text">Most Recer</span>
                     <img src="images/arrow-down.svg" alt="arrow down" class="sort-icon">
                 </div>
             </div>
@@ -644,9 +698,7 @@
         </section>
 
         <section class="divider-section">
-            <div class="line-container">
-                <div class="separator-line"></div>
-            </div>
+            <div class="separator-line"></div>
         </section>
     </main>
 
@@ -656,22 +708,23 @@
             <div class="footer-brand">
                 <img src="images/logo-group.svg" alt="logo" class="brand-title">
                 <p class="brand-desc">
-                    Every day, your body is under stress-not just from lack of sleep or low energy, but from the
-                    invisible effects of artificial electricity. Phones, Wi-Fi, computers, and other devices overload
-                    your body with excess electrical charge.
+                    Every day, your body is under stress - not just from lack of sleep
+                    or low energy, but from the invisible effects of artificial electricity.
+                    Phones, Wi-Fi, computers, and other devices overload your body
+                    with excess electrical charge
                 </p>
                 <div class="social-icons">
-                    <a href="#" class="social-btn" aria-label="Twitter">
-                        <img src="images/facebook.svg" alt="Twitter" class="icon-img icon-twitter">
+                    <a href="#" class="social-btn">
+                        <img src="images/facebook.svg" alt="Facebook">
                     </a>
-                    <a href="#" class="social-btn" aria-label="LinkedIn">
-                        <img src="images/twitter.svg" alt="LinkedIn" class="icon-img icon-linkedin">
+                    <a href="#" class="social-btn">
+                        <img src="images/twitter.svg" alt="Twitter">
                     </a>
-                    <a href="#" class="social-btn" aria-label="Instagram">
-                        <img src="images/linkedin.svg" alt="Instagram" class="icon-img icon-instagram">
+                    <a href="#" class="social-btn">
+                        <img src="images/linkedin.svg" alt="LinkedIn">
                     </a>
-                    <a href="#" class="social-btn" aria-label="Facebook">
-                        <img src="images/instagram.svg" alt="Facebook" class="icon-img icon-facebook">
+                    <a href="#" class="social-btn">
+                        <img src="images/instagram.svg" alt="Instagram">
                     </a>
                 </div>
             </div>
