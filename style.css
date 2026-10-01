@@ -278,6 +278,7 @@ html, body {
   font-size: 22px;
   font-weight: 700;
   line-height: 33px;
+  color: #363634;
 }
 
 .old-price {
@@ -1693,10 +1694,6 @@ html, body {
     height: auto;
     flex: none;
     display: block;
-    margin: 0;
-    padding: 0;
-    float: none;
-    clear: both;
   }
 
   /* 4. Hero Main Image */
@@ -1737,19 +1734,60 @@ html, body {
 
   /* 6. Product Title & TM Fix */
   .product-title {
-    font-size: 20px;
-    line-height: 26px;
-    margin: 0 0 6px 0;
-    padding: 0;
+    font-size: 28px;
+    line-height: 36px;
+    text-align: center;
+    padding-top: 24px;
   }
 
   .tm-symbol,
   .product-title sup {
-    font-size: 11px;
-    top: -0.5em;
+    font-size: 18px;
+    /* top: -0.5em; */
     vertical-align: super;
     line-height: 0;
   }
+
+  .reviews-rating {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 6px;
+  }
+
+  .reviews-rating img{
+    width: 77px;
+    height: 12.83px;
+    object-fit: contain;
+    display: block;
+  }
+
+  .review-count {
+    font-size: 14px;
+  }
+
+  .price-container {
+    width: 228px;
+    height: 33px;
+  }
+
+  .current-price {
+   font-size: 18px; 
+   letter-spacing: 0;
+  }
+
+  .old-price {
+    padding-bottom: 5px;
+  }
+
+  /* .save-badge {
+    width: 75px;
+    height: 26px;
+  } */
+
+
+
 
   /* 7. Plug Options 4-Boxes Exact Screen Fit */
   .plug-options {
